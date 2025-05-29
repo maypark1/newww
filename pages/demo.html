@@ -2,8 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Frank Ocean - Blonde Tour</title>
+    <title>~Tour</title>
     <style>
         * {
             box-sizing: border-box;
@@ -58,7 +57,7 @@
         }
 
         .nav-link:hover {
-            color: #cccccc;
+            color: hsl(293, 97%, 73%);
         }
 
         /* Main Content */
@@ -69,7 +68,7 @@
             background-color: #141414;
         }
 
-        /* Tour Section */
+        /* Tour section */
         .tour-section {
             text-align: center;
             padding: 106px 0;
@@ -157,7 +156,7 @@
             height: 623px;
         }
 
-        /* Responsive Design */
+        /* 반응형 디자인인 */
         @media (max-width: 1200px) {
             .artist-title {
                 font-size: 48px;
@@ -273,7 +272,7 @@
     <!-- Header Section -->
     <header class="header">
         <h1 class="artist-title">BILEE ALISHI</h1>
-        <nav class="nav-menu" role="navigation" aria-label="Main navigation">
+        <nav class="nav-menu">
             <a href="#home" class="nav-link">HOME</a>
             <a href="#store" class="nav-link">STORE</a>
             <a href="#videos" class="nav-link" >VIDEOS</a>
@@ -299,7 +298,7 @@ Exquisite sophisticated iconic cutting-edge laborum deserunt esse bureaux cupida
                     <h3 class="photo-title">photo1</h3>
                     <p class="photo-subtitle">A subheading for this section, as long or as short as you like</p>
                 </div>
-                <img src="../assets/images/img_image_400x623.png" alt="Artistic photo featuring pears" class="photo-image photo1-img">
+                <img src="../assets/images/img_image_400x623.png" alt="이미지1" class="photo-image photo1-img">
             </div>
 
             <!-- Photo 2 -->
@@ -308,148 +307,10 @@ Exquisite sophisticated iconic cutting-edge laborum deserunt esse bureaux cupida
                     <h3 class="photo-title">photo2</h3>
                     <p class="photo-subtitle">A subheading for this section, as long or as short as you like</p>
                 </div>
-                <img src="../assets/images/img_image.png" alt="Artistic photo featuring watermelon slices" class="photo-image photo2-img">
+                <img src="../assets/images/img_image.png" alt="이미지2" class="photo-image photo2-img">
             </div>
         </section>
     </main>
 
-    <script>
-        // Navigation functionality
-        document.addEventListener('DOMContentLoaded', function() {
-            const navLinks = document.querySelectorAll('.nav-link');
-            
-            navLinks.forEach(link => {
-                link.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    
-                    // Remove active class from all links
-                    navLinks.forEach(l => l.classList.remove('active'));
-                    
-                    // Add active class to clicked link
-                    this.classList.add('active');
-                    
-                    // Simulate navigation
-                    const target = this.getAttribute('href').substring(1);
-                    console.log(`Navigating to: ${target}`);
-                    
-                    // Smooth scroll to section if it exists
-                    const targetSection = document.getElementById(target);
-                    if (targetSection) {
-                        targetSection.scrollIntoView({ behavior: 'smooth' });
-                    }
-                });
-                
-                // Hover effects
-                link.addEventListener('mouseenter', function() {
-                    this.style.transform = 'translateY(-2px)';
-                });
-                
-                link.addEventListener('mouseleave', function() {
-                    this.style.transform = 'translateY(0)';
-                });
-            });
-            
-            // Photo gallery interactions
-            const photoImages = document.querySelectorAll('.photo-image');
-            
-            photoImages.forEach(img => {
-                img.addEventListener('click', function() {
-                    // Create modal overlay
-                    const modal = document.createElement('div');
-                    modal.style.cssText = `
-                        position: fixed;
-                        top: 0;
-                        left: 0;
-                        width: 100%;
-                        height: 100%;
-                        background: rgba(0, 0, 0, 0.9);
-                        display: flex;
-                        justify-content: center;
-                        align-items: center;
-                        z-index: 1000;
-                        cursor: pointer;
-                    `;
-                    
-                    const modalImg = document.createElement('img');
-                    modalImg.src = this.src;
-                    modalImg.alt = this.alt;
-                    modalImg.style.cssText = `
-                        max-width: 90%;
-                        max-height: 90%;
-                        border-radius: 8px;
-                        object-fit: contain;
-                    `;
-                    
-                    modal.appendChild(modalImg);
-                    document.body.appendChild(modal);
-                    
-                    // Close modal on click
-                    modal.addEventListener('click', function() {
-                        document.body.removeChild(modal);
-                    });
-                    
-                    // Close modal on escape key
-                    document.addEventListener('keydown', function(e) {
-                        if (e.key === 'Escape') {
-                            if (document.body.contains(modal)) {
-                                document.body.removeChild(modal);
-                            }
-                        }
-                    });
-                });
-            });
-            
-            // Scroll animations
-            const observerOptions = {
-                threshold: 0.1,
-                rootMargin: '0px 0px -50px 0px'
-            };
-            
-            const observer = new IntersectionObserver(function(entries) {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.style.opacity = '1';
-                        entry.target.style.transform = 'translateY(0)';
-                    }
-                });
-            }, observerOptions);
-            
-            // Observe photo items for scroll animations
-            const photoItems = document.querySelectorAll('.photo-item');
-            photoItems.forEach(item => {
-                item.style.opacity = '0';
-                item.style.transform = 'translateY(50px)';
-                item.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-                observer.observe(item);
-            });
-            
-            // Keyboard navigation
-            document.addEventListener('keydown', function(e) {
-                if (e.key === 'Tab') {
-                    // Ensure focus is visible
-                    document.body.classList.add('keyboard-navigation');
-                }
-            });
-            
-            document.addEventListener('mousedown', function() {
-                document.body.classList.remove('keyboard-navigation');
-            });
-        });
-        
-        // Add CSS for keyboard navigation
-        const style = document.createElement('style');
-        style.textContent = `
-            .keyboard-navigation .nav-link:focus {
-                outline: 2px solid #ffffff;
-                outline-offset: 2px;
-            }
-            
-            .nav-link.active {
-                color: #cccccc;
-                text-decoration: underline;
-            }
-        `;
-        document.head.appendChild(style);
-    </script>
 </body>
 </html>
