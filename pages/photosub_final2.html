@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>~tour</title>
+        <style>
+            * {
+                box-sizing: border-box;
+                margin: 0;
+                padding: 0;
+            }
+
+            body {
+                 font-family: Inter, sans-serif;
+                background-color: #141414;
+                color: #ffffff;
+                line-height: 1.6;
+            }
+
+            /* 헤더 스타일 */
+            .header {
+                position: relative;
+                height: 164px;
+                background-color: #141414;
+                padding: 0;
+            }
+            .artist-title {
+            position: absolute;
+            left: 57px;
+            top: 46px;
+            font-size: 64px;
+            font-weight: 700;
+            line-height: 78px;
+            color: #ffffff;
+            width: 452px;
+            height: 88px;
+        }
+        .nav-menu {
+            position: absolute;
+            right: 0;
+            top: 67px;
+            display: flex;
+            gap: 48px;
+            padding-right: 57px;
+        }
+
+        .nav-link {
+            font-size: 20px;
+            font-weight: 500;
+            line-height: 25px;
+            color: #ffffff;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .nav-link:hover {
+            color: hsl(293, 97%, 73%);
+        }
+
+        /* 메인 콘텐츠 스타일 */
+        .article {
+            position: relative;
+            width: 100%;
+            min-height: calc(100vh - 164px);
+            background-color: #141414;
+        }
+
+        /* 투어 섹션 스타일 */
+        .tour-section {
+            text-align: center;
+            padding: 110px 0;
+        }
+
+        .tour-title {
+            font-size: 35px;
+            font-weight: 600;
+            line-height: 40px;
+            color: #ffffff;
+            margin-bottom: 80px;
+        }
+
+        .tour-description {
+            font-size: 20px;
+            font-weight: 500;
+            line-height: 30px;
+            color: #ffffff;
+            width: 850px;
+            margin: 0 auto;
+            white-space: pre-line;
+        }
+
+        /* 포토 갤러리 스타일 */
+        .container {
+            width: 70%;
+            margin: auto;
+            overflow: hidden;
+        }
+        .images {
+            width: 100%;
+            height: auto;
+        }
+        .images img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            transition: transform 0.3s ease;
+            padding: 10px;
+        }
+
+        .images img:hover {
+            transform: scale(1.05);
+          
+        }
+
+        @media (min-width: 800px) {
+  .container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    grid-auto-flow: row dense;
+  }
+  .imageFlex {
+    display: grid;
+    row-gap: 10px;
+  }
+
+}
+
+        </style>
+    </head>
+    <body>
+        <!--헤더 섹션-->
+        <header class="header"></header>
+            <h1 class="artist-title">BILEE ALISHI</h1>
+            <nav class="nav-menu">
+                <a href="#home" class="nav-link">HOME</a>
+                <a href="#store" class="nav-link">STORE</a>
+                <a href="#videos" class="nav-link" >VIDEOS</a>
+                <a href="#photo" class="nav-link" >PHOTO</a>
+            </nav>
+        </header>
+
+        <!--메인 콘텐츠 영역-->
+        <article class="article">
+            <!--투어 섹션-->
+            <section class="tour-section">
+                <h2 class="tour-title">404: LOVE NOT FOUND TOUR</h2>
+                <p class="tour-description">
+                    Love may not have been found, but something more fragile was: connection in chaos.
+                    BILEE ALISHI’s 404: LOVE NOT FOUND TOUR officially disconnected in Berlin this past spring, after a 20-date, emotionally corrupted odyssey across digital nightclubs, concrete temples, and empty airport hangars.
+                    The tour brought in over 310,000 fragmented hearts, from São Paulo to Stockholm, as BILEE navigated the ruins of romance through broken MIDI, intentional buffering, and synchronized emotional desynchronization. Setlists glitched live. Dancers crashed mid-choreo. Fans sobbed to nothing but a metronome.
+                </p>
+            </section>
+
+       
+
+        <!--포토 갤러리 영역-->
+            <section class="container">
+    <div class="images">
+      <div class="imageFlex">
+        <img src="../assets/images/img_image.png">
+        <img src="../assets/images/img_image_400x623.png">
+        <img src="../assets/images/img_image_400x623.png">
+        <img src="../assets/images/img_image_400x623.png">
+      </div>
+      </div>
+    <div class="images">
+      <div class="imageFlex">
+        <img src="../assets/images/img_image_400x623.png">
+        <img src="../assets/images/img_image_400x623.png">
+        <img src="../assets/images/img_image_400x623.png">
+        <img src="../assets/images/img_image_400x623.png">
+      </div>
+    </div>
+</section>
+
+     </article>
+
+     <script>
+        // 반응형 포토 갤러리 구현
+            const photoImages = document.querySelectorAll('.images img');
+            
+            photoImages.forEach(img => {
+                img.addEventListener('click', function() {
+                    // 모달 백그라운드
+                    const modal = document.createElement('div');
+                    modal.style.cssText = `
+                        position: fixed;
+                        top: 0;
+                        left: 0;
+                        width: 100%;
+                        height: 100%;
+                        background: rgba(0, 0, 0, 0.9);
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        z-index: 1000;
+                        cursor: pointer;
+                    `;
+                    //모달 컨텐츠 (이미지 팝업)
+                    const modalImg = document.createElement('img');
+                    modalImg.src = this.src;
+                    modalImg.alt = this.alt;
+                    modalImg.style.cssText = `
+                        max-width: 90%;
+                        max-height: 90%;
+                        border-radius: 8px;
+                        object-fit: contain;
+                    `;
+                    
+                    modal.appendChild(modalImg);
+                    document.body.appendChild(modal);
+                    
+                    // 모달 닫기
+                    modal.addEventListener('click', function() {
+                        document.body.removeChild(modal);
+                    });
+                    
+                });
+            });
+            
+            // 스크롤 애니메이션 구현
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+            
+            const observer = new IntersectionObserver(function(entries) {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, observerOptions);
+            
+            // 스크롤시 에니메이션이 나타남
+            const photoItems = document.querySelectorAll('.imageFlex');
+            photoItems.forEach(item => {
+                item.style.opacity = '0';
+                item.style.transform = 'translateY(50px)';
+                item.style.transition = 'opacity 1s ease, transform 1s ease';
+                observer.observe(item);
+            });
+
+            document.head.appendChild(style);
+     </script>
+    </body>
+
+</html>
